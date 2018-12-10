@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XFPanel-Jexus", "XFPanel-Jexus\XFPanel-Jexus.csproj", "{A6274ACF-1ED7-45D0-8F38-A46330F9509A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XFPanelJexus.Web", "XFPanel-Jexus\XFPanelJexus.Web.csproj", "{A6274ACF-1ED7-45D0-8F38-A46330F9509A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XFPanelJexus.Model", "XFPanelJexus.Model\XFPanelJexus.Model.csproj", "{742843CB-1AB2-4D35-B315-009F7C88E5E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XFPanelJexus.Service", "XFPanelJexus.Service\XFPanelJexus.Service.csproj", "{9D675790-89C4-48C4-905A-AA676D2BDC24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{A6274ACF-1ED7-45D0-8F38-A46330F9509A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6274ACF-1ED7-45D0-8F38-A46330F9509A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6274ACF-1ED7-45D0-8F38-A46330F9509A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{742843CB-1AB2-4D35-B315-009F7C88E5E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{742843CB-1AB2-4D35-B315-009F7C88E5E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{742843CB-1AB2-4D35-B315-009F7C88E5E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{742843CB-1AB2-4D35-B315-009F7C88E5E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D675790-89C4-48C4-905A-AA676D2BDC24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D675790-89C4-48C4-905A-AA676D2BDC24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D675790-89C4-48C4-905A-AA676D2BDC24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D675790-89C4-48C4-905A-AA676D2BDC24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
