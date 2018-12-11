@@ -1,7 +1,13 @@
-﻿
+﻿@model List<string>
 @{
     ViewData["Title"] = "JexusSH";
 }
 
 <h2>JexusSH</h2>
 
+@{ 
+    foreach (var i in Model)
+    {
+        <br /> @i
+    }
+}

@@ -60,5 +60,10 @@ namespace XFPanelJexus.Web.Models.Service
             { }
             else shList.Add("checkquery=" + _jexusOptions.JexusModel.checkquery);
         }
+
+        public List<string> Re()
+        {
+            return shList;
+        }
     }
 }

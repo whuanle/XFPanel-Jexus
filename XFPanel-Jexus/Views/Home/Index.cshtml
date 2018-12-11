@@ -5,8 +5,38 @@
 @{ 
     
 }
-<form method="post">
+<form method="post" asp-action="JexusSH">
     <div class="col-12">
+        <div class="input-group mb-2">
+            <span class="mr-2">设置配置文件文件名</span>
+            <input asp-for="@Model.filename" type="text" class="form-control" placeholder="字母组合" />
+        </div>
+        <ul>
+            <li>
+                <small>Jexus中每个网站拥有一个配置文件(无文件后缀)</small>
+            </li>
+            <li>
+                <small>
+                    请勿使用相同的文件名称，否则将会覆盖原有配置文件
+                </small>
+            </li>
+        </ul>
+        <hr />
+        <div class="input-group mb-2">
+            <span class="mr-2">你的邮箱或者其它备注</span>
+            <input asp-for="@Model.email" type="text" class="form-control" placeholder="你的邮箱" />
+        </div>
+        <ul>
+            <li>
+                <small>本站将保留你的配置文件(10天)</small>
+            </li>
+            <li>
+                <small>
+                    填写你的邮箱，在你需要的时候可以检索你曾经创建过的配置文件
+                </small>
+            </li>
+        </ul>
+        <hr />
         <div class="card">
             <div class="card-header"><i class="icon-cog icon-large mr-2 "></i><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo1">基础配置<i class="ml-1 icon-sort-down icon-large"></i></button></div>
             <div id="demo1" class="collapse">
@@ -38,7 +68,7 @@
                         <li><small>指外部通过特定端口访问你的网站</small></li>
                         <li><small>通过 域名:端口 或 ip:端口 均可访问</small></li>
                     </ul>
-                    
+
                     <hr />
 
                     <div class="input-group mb-2">
@@ -139,6 +169,7 @@
                         <input asp-for="@Model.JexusModel.nolog" type="text" class="form-control" placeholder="true or false" value="false" />
                     </div>
                     <ul>
+                        <li><small>请填写 true 或 false</small></li>
                         <li><small>默认 Jexus 记录日志</small></li>
                         <li><small>关闭日志功能可以提高性能</small></li>
                         <li><small>保留日志功能便于排错</small></li>
@@ -150,6 +181,7 @@
                         <input asp-for="@Model.JexusModel.usegzip" type="text" class="form-control" placeholder="yes ore no" />
                     </div>
                     <ul>
+                        <li><small>请填写 yes 或 no</small></li>
                         <li><small>开启网页压缩有利于提高网站性能</small></li>
                     </ul>
                     <hr />
@@ -177,6 +209,7 @@
                     </div>
                     <ul>
                         <li><small>默认为true</small></li>
+                        <li><small>请填写 true 或 false</small></li>
                         <li><small>避免非法入侵</small></li>
                     </ul>
                     <hr />
@@ -186,4 +219,5 @@
 
         </div>
     </div>
+    <input type="submit" class="btn btn-default" value="生成" />
 </form>
