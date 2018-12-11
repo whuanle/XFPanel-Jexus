@@ -21,24 +21,6 @@ namespace XFPanelJexus.Web.Models
         /// yes or no
         /// </summary>
         public string nolog { get; set; }
-        /// <summary>
-        /// 网站首页文件名
-        /// 对于asp.net core 程序，不需要填
-        /// </summary>
-        public string indexs { get; set; }
-
-        /// <summary>
-        /// 是否使用长连接
-        /// 默认为长连接
-        /// true
-        /// </summary>
-        public string keep_alive { get; set; }
-
-        /// <summary>
-        /// 禁止访问目录
-        /// 相对网站根目录
-        /// </summary>
-        public string DenyDirs { get; set; }
 
         /// <summary>
         /// 是否开启压缩
@@ -59,5 +41,6 @@ namespace XFPanelJexus.Web.Models
         /// 默认为true
         /// </summary>
         public string checkquery { get; set; }
+        
     }
 }

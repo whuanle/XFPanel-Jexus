@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using XFPanel_Jexus.Models;
+using XFPanelJexus.Web.Models;
+using XFPanelJexus.Web.Models.Service;
 
 namespace XFPanel_Jexus.Controllers
 {
@@ -14,24 +16,16 @@ namespace XFPanel_Jexus.Controllers
         {
             return View();
         }
-
-        public IActionResult About()
+        [HttpPost]
+        public IActionResult JexusSH(JexusOptions jexusOptions)
         {
-            ViewData["Message"] = "Your application description page.";
-
+            JexusSH jexusSH = new JexusSH(jexusOptions);
             return View();
         }
-
-        public IActionResult Contact()
+        [HttpGet]
+        public IActionResult JexusSH()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            return View("./Index.cshtml");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
