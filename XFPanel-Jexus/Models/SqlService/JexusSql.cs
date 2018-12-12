@@ -13,8 +13,13 @@ namespace XFPanelJexus.Web.Models.SqlService
         /// 提取码
         /// </summary>
         public int NameID { get; set; }
+        /// <summary>
+        /// 文件提取码
+        /// </summary>
+        public string DownM { get; set; }
         public string Email { get; set; }
         public DateTime DateTime { get; set; }
         public string FilePath { get; set; }
+        public string Sitename { get; set; }
     }
 }

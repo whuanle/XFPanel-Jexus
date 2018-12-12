@@ -9,7 +9,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using XFPanelJexus.Web.Models.SqlService;
+using Microsoft.EntityFrameworkCore.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
 namespace XFPanel_Jexus
 {
     public class Startup
@@ -31,7 +34,8 @@ namespace XFPanel_Jexus
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            var connection ="Filename="+Directory.GetCurrentDirectory()+ "/"+"SQLFile/XF.sqlite";
+            services.AddDbContext<SQLContext>(options => options.UseSqlite(connection));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

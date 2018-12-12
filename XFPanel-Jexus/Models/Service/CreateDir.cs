@@ -20,7 +20,7 @@ namespace XFPanelJexus.Web.Models.Service
             }
         }
 
-        public void CreateJexusSh(List<string> shList,SQLContext context,JexusSql jexusSql)
+        public JexusSql CreateJexusSh(List<string> shList,SQLContext context,JexusSql jexusSql)
         {
             string dirPath = shDir + @"/"+DateTime.Now.Date.ToString("yyyyMMdd");
             if (!Directory.Exists(dirPath))
@@ -28,22 +28,34 @@ namespace XFPanelJexus.Web.Models.Service
                 Directory.CreateDirectory(dirPath);
             }
 
-            string filename = DateTime.Now.ToString("yyyyMMddHHmmssff")+".sh";
-            var filepath = dirPath + @"/" + filename;
+            string filename = DateTime.Now.ToString("yyyyMMddHHmmssff");
+            var filepath = dirPath + @"/" + filename + ".sh";
 
             FileStream fileStream = new FileStream(filepath, FileMode.Create);
             StreamWriter streamWriter = new StreamWriter(fileStream);
+
             //写入命令到 sh
-            streamWriter.Write("test");
+            streamWriter.WriteLine("cd /usr/jexus/siteconf");
+            streamWriter.WriteLine("echo >"+jexusSql.Sitename);
 
+            foreach(var i in shList)
+            {
+                streamWriter.WriteLine(@"echo " + "\"" + i + "\"");
+            }
+            streamWriter.WriteLine("cd /usr/jexus");
+            streamWriter.WriteLine("./jws strat "+ jexusSql.Sitename);
             //写入结束
-
+            streamWriter.Close();
+            fileStream.Close();
+            
             //写入数据库
             jexusSql.DateTime = DateTime.Now;
             jexusSql.FilePath = filepath;
-            context.jexusSqls.Add(jexusSql);
+            jexusSql.DownM = filename;
+            context.jexusSqls.Add(jexusSql); 
             context.SaveChanges();
 
+            return jexusSql;
         }
     }
 }

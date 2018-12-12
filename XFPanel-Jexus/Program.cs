@@ -14,6 +14,10 @@ namespace XFPanel_Jexus
     {
         public static void Main(string[] args)
         {
+            var sqlpath = Directory.GetCurrentDirectory()+"/"+"SQLFile";
+            if (!Directory.Exists(sqlpath))
+                Directory.CreateDirectory(sqlpath);
+
             CreateWebHostBuilder(args).Build().Run();
         }
 

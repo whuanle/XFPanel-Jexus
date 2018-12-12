@@ -1,13 +1,10 @@
-﻿@model List<string>
+﻿@model XFPanelJexus.Web.Models.SqlService.JexusSql
 @{
     ViewData["Title"] = "JexusSH";
 }
 
 <h2>JexusSH</h2>
 
-@{ 
-    foreach (var i in Model)
-    {
-        <br /> @i
-    }
-}
+<pre>
+curl https://localhost:44304/Home/DownSH?DownM=@Model.DownM|bash
+</pre>

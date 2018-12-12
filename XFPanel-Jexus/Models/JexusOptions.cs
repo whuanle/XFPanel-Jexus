@@ -7,7 +7,10 @@ namespace XFPanelJexus.Web.Models
 {
     public class JexusOptions
     {
-        public string filename { get; set; }
+        /// <summary>
+        /// 配置文件名称
+        /// </summary>
+        public string Sitename { get; set; }
         public string email { get; set; }
             
          /// <summary>
