@@ -15,7 +15,7 @@ namespace XFPanel_Jexus.Controllers
 {
     public class HomeController : Controller
     {
-        private SQLContext _sqlContext;
+        private readonly SQLContext _sqlContext;
         public HomeController(SQLContext context)
         {
             _sqlContext = context;
@@ -25,8 +25,13 @@ namespace XFPanel_Jexus.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult JexusSH(JexusOptions jexusOptions)
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateJexus(JexusOptions jexusOptions)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(jexusOptions);
+            }
             JexusSH jexusSH = new JexusSH(jexusOptions);
             jexusSH.JexusOneSH();
             jexusSH.JexusWebSH();
@@ -36,15 +41,23 @@ namespace XFPanel_Jexus.Controllers
             JexusSql jexusSql = new JexusSql();
             jexusSql.Email = jexusOptions.email;
             jexusSql.Sitename = jexusOptions.Sitename;
-
+            jexusSql.SHType = "Jexus";
             var jq = createDir.CreateJexusSh(jexusSH.Re(), _sqlContext, jexusSql);
+            ViewBag.host = HttpContext.Request.Host;
 
-            return View(jq);
+            return RedirectToAction(nameof(JexusSH), jq);
         }
         [HttpGet]
-        public IActionResult JexusSH()
+        public IActionResult CreateJexus()
         {
-            return View("./Index.cshtml");
+            return View();
+        }
+        public IActionResult JexusSH(JexusSql jexusSql)
+        {
+            if (jexusSql == null)
+                return View();
+
+            return View(jexusSql);
         }
         /// <summary>
         /// 返回文件
@@ -59,12 +72,62 @@ namespace XFPanel_Jexus.Controllers
 
             var stream = System.IO.File.OpenRead(path);
 
-            return File(stream, "application/x-sh", DownM+".sh");
+            return File(stream, "application/x-sh", DownM + ".sh");
         }
         public IActionResult DownSH()
         {
             return View("./Index.cshtml");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Select(string str, string type)
+        {
+            if (str == null || type == null || (type != "DownM" && type != "email"))
+                return View();
+
+            if (type == "DownM")
+            {
+                ViewBag.DownM = str;
+                return View(SelectDownM(str));
+            }
+            ViewBag.host = HttpContext.Request.Host;
+            ViewBag.email = str;
+            return View(SelectEmail(str));
+        }
+
+        [HttpGet]
+        public IActionResult Select()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 查找记录
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<JexusSql> SelectDownM(string DownM)
+        {
+            if (DownM == null || DownM == string.Empty)
+                return null;
+            var selectlist = _sqlContext.jexusSqls.Where(m => m.DownM == DownM).ToList();
+            if (selectlist == null)
+                return null;
+
+            return selectlist;
+
+        }
+
+        public IEnumerable<JexusSql> SelectEmail(string email)
+        {
+            if (email == null || email == string.Empty)
+                return null;
+
+            var selectlist = _sqlContext.jexusSqls.Where(a => a.Email == email).OrderByDescending(a => a.DateTime).ToList();
+            if (selectlist == null)
+                return null;
+            return selectlist;
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

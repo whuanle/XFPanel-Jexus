@@ -1,7 +1,6 @@
 cd /usr/jexus/siteconf
-echo >afe
-echo "hosts=ertes"
-echo "ports=0"
+echo >
+echo "ports=80"
 echo "root=/ "
 echo "AppHost={"
 echo "CmdLine=dotnet ;"
@@ -10,4 +9,4 @@ echo "port=0;"
 echo "}"
 echo "nolog=false"
 cd /usr/jexus
-./jws strat afe
+./jws strat 

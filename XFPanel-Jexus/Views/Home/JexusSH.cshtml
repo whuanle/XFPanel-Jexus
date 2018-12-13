@@ -1,10 +1,17 @@
 ﻿@model XFPanelJexus.Web.Models.SqlService.JexusSql
 @{
-    ViewData["Title"] = "JexusSH";
+    ViewData["Title"] = "创建Jexus配置文件";
 }
 
 <h2>JexusSH</h2>
-
-<pre>
-curl https://localhost:44304/Home/DownSH?DownM=@Model.DownM|bash
+<div class="card">
+    <div class="card-header">
+        复制以下命令到你的服务器运行
+    </div>
+    <div class="card-body">
+        <pre>
+curl https://@ViewBag.host/Home/DownSH?DownM=@Model.DownM|bash
 </pre>
+    </div>
+
+</div>

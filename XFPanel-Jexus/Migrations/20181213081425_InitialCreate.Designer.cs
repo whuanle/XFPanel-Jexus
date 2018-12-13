@@ -9,7 +9,7 @@ using XFPanelJexus.Web.Models.SqlService;
 namespace XFPanelJexus.Web.Migrations
 {
     [DbContext(typeof(SQLContext))]
-    [Migration("20181212053050_InitialCreate")]
+    [Migration("20181213081425_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,8 @@ namespace XFPanelJexus.Web.Migrations
                     b.Property<string>("FilePath");
 
                     b.Property<int>("NameID");
+
+                    b.Property<string>("SHType");
 
                     b.Property<string>("Sitename");
 

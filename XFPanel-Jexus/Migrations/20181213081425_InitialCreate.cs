@@ -17,6 +17,7 @@ namespace XFPanelJexus.Web.Migrations
                     DownM = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     DateTime = table.Column<DateTime>(nullable: false),
+                    SHType = table.Column<string>(nullable: true),
                     FilePath = table.Column<string>(nullable: true),
                     Sitename = table.Column<string>(nullable: true)
                 },

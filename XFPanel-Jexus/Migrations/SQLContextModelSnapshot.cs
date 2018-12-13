@@ -31,6 +31,8 @@ namespace XFPanelJexus.Web.Migrations
 
                     b.Property<int>("NameID");
 
+                    b.Property<string>("SHType");
+
                     b.Property<string>("Sitename");
 
                     b.HasKey("ID");

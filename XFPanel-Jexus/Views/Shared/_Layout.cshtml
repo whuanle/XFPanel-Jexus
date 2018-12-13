@@ -21,9 +21,24 @@
     </environment>
 </head>
 <body>
-<nav>
-头部
-</nav>
+    <ul class="nav nav-pills nav-justified  bg-white">
+        <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" asp-controller="Home" asp-action="Index" style="text-decoration: none;">
+            首页
+        </a>
+        <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" asp-controller="Home" asp-action="CreateJexus" style="text-decoration: none;">
+            Jexus 配置
+        </a>
+        <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" asp-controller="Home" asp-action="CreateNginx" style="text-decoration: none">
+            Nginx 配置
+        </a>
+        <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" asp-controller="Home" asp-action="CreateNJ" style="text-decoration: none">
+            Nginx + Jexus 混合配置
+        </a>
+        <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" asp-controller="Home" asp-action="Select" style="text-decoration: none">
+            查找以往记录
+        </a>
+    </ul>
+    <hr />
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">

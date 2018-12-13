@@ -1,13 +1,12 @@
 cd /usr/jexus/siteconf
-echo >rtg
-echo "hosts=setysd"
+echo >
 echo "ports=80"
-echo "root=/ /afaf"
+echo "root=/ "
 echo "AppHost={"
 echo "CmdLine=dotnet ;"
-echo "AppRoot=/afaf;"
+echo "AppRoot=;"
 echo "port=0;"
 echo "}"
 echo "nolog=false"
 cd /usr/jexus
-./jws strat rtg
+./jws strat 

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<XFPanelJexus.Web.Models.SqlService.JexusSql>
+@{
+    ViewData["Title"] = "查询你的网站配置文件记录";
+}
+
+<div class="card container-fluid">
+    <div class="card-header">
+        <h3 class="text-center">可通过两种方式查询</h3>
+        <form method="post" class="form-inline">
+            <div class="d-inline col-2">
+                <label class="form-text label-default">输入文件码</label>
+            </div>
+            <div class="d-inline col-4">
+                <input type="text" class="form-control  input-group-text" name="str" value="@ViewBag.DownM" oninput="value=value.replace(/[^\d]/g,'')" />
+                <input type="hidden" name="type" value="DownM" />
+            </div>
+            <div class="d-inline col-4"><input class="btn btn-success" type="submit" value="查找" /></div>
+            <div class="col-4"></div>
+        </form>
+        <hr />
+        <form method="post" class="form-inline">
+            <div class="d-inline col-2">
+                <label class="form-text label-default">输入邮箱地址</label>
+            </div>
+            <div class="d-inline col-4 container-fluid">
+                <input type="text" class="form-control input-group-text" name="str" value="@ViewBag.email" />
+                <input type="hidden" name="type" value="email" />
+            </div>
+            <div class="d-inline col-2"><input class="btn btn-success" type="submit" value="查找" /></div>
+            <div class="col-4"></div>
+        </form>
+
+    </div>
+    <div class="card-body">
+        @{
+            if (Model == null)
+            {
+                <h3 class="text-center">无效查询</h3>
+            }
+            else
+            {
+                <table class="container-fluid  text-center table table-hover table-responsive">
+                    <thead class="container-fluid ">
+                        <tr class="table-primary">
+                            <th>文件码</th>
+                            <th>Email</th>
+                            <th>创建时间</th>
+                            <th>配置类型</th>
+                            <th>配置文件名</th>
+                            <th>Shell</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.DownM</td>
+                                <td>@item.Email</td>
+                                <td>@item.DateTime</td>
+                                <td>@item.SHType</td>
+                                <td>@item.Sitename</td>
+                                <td><small><code>curl https://@ViewBag.host/Home/DownSH?DownM=@item.DownM|bash </code></small></td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+</div>
+

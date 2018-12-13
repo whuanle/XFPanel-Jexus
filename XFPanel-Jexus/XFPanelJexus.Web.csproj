@@ -26,10 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="DataSet1.xsd">
-      <Generator>dcSQLiteDataSetGenerator</Generator>
-      <CustomToolNamespace>XFPanelJexus.Web</CustomToolNamespace>
-    </None>
+    <Folder Include="JexuesSHDir\" />
+    <Folder Include="SQLFile\" />
   </ItemGroup>
 
 </Project>
