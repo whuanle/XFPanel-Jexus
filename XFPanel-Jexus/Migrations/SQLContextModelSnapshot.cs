@@ -32,8 +32,6 @@ namespace XFPanelJexus.Web.Migrations
                     b.Property<string>("FilePath")
                         .IsRequired();
 
-                    b.Property<Guid>("GuidID");
-
                     b.Property<string>("SHType")
                         .IsRequired();
 

@@ -1,5 +1,4 @@
-﻿@model XFPanelJexus.Web.Models.SqlService.JexusSql
-@{
+﻿@{
     ViewData["Title"] = "创建Jexus配置文件";
 }
 
@@ -10,7 +9,7 @@
     </div>
     <div class="card-body">
         <pre>
-curl https://@ViewBag.host/Home/DownSH?DownM=@Model.DownM|bash
+curl https://@ViewBag.host/Home/DownSH?DownM=@ViewBag.DownM|bash
 </pre>
     </div>
 

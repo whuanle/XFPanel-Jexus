@@ -12,9 +12,6 @@ namespace XFPanelJexus.Web.Models.SqlService
         /// ID
         /// </summary>
         public int ID { get; set; }
-
-        [Required]
-        public Guid GuidID { get; set; }
         /// <summary>
         /// 文件提取码
         /// </summary>

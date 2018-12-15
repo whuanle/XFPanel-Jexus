@@ -13,7 +13,6 @@ namespace XFPanelJexus.Web.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    GuidID = table.Column<Guid>(nullable: false),
                     DownM = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
                     DateTime = table.Column<DateTime>(nullable: false),

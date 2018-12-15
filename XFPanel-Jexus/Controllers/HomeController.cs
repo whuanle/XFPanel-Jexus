@@ -56,29 +56,20 @@ namespace XFPanel_Jexus.Controllers
             var jq =await createDirOrFile.CreateJexusSh(jexusSH.Re(), _sqlContext, jexusSql);
             ViewBag.host = HttpContext.Request.Host;
 
-            return RedirectToAction(nameof(JexusSH),jq);
+            return Redirect("./JexusSH?DownM=" + jq.DownM);
            
         }
-        [HttpPost]
-        public IActionResult JexusSH(JexusSql jexusSql)
-        {
-            
-            if (jexusSql == null)
-            {
-                ViewBag.host = HttpContext.Request.Host;
-                return View();
-            }
-                
-
-            return View(jexusSql);
-        }
-        /// <summary>
-        /// 创建Jexus配置文件视图
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
         public IActionResult CreateJexus()
         {
+            return View();
+        }
+        public IActionResult JexusSH(string DownM)
+        {
+            if (DownM == null)
+                return NotFound();
+            ViewBag.DownM = DownM;
+            ViewBag.host = HttpContext.Request.Host;
             return View();
         }
 
