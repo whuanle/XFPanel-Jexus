@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using XFPanelJexus.Web.Models.JexusModel;
 
 namespace XFPanelJexus.Web.Models.Service
 {
+    /// <summary>
+    /// 使输入的表单内容生成 Shell 内容
+    /// </summary>
     public class JexusSH
     {
         List<string> shList = new List<string>();
@@ -13,11 +17,27 @@ namespace XFPanelJexus.Web.Models.Service
         {
             _jexusOptions = jexusOptions;
         }
+
+        /// <summary>
+        /// 构建 Shell 内容
+        /// </summary>
+        /// <returns></returns>
+        public async Task JexusBuild()
+        {
+            await Task.Run(() =>
+            {
+                JexusOneSH();
+                JexusWebSH();
+                JexusModelSH();
+            });
+
+
+        }
         public void JexusOneSH()
         {
             if (_jexusOptions.JexusOne.hosts == null || _jexusOptions.JexusOne.hosts == string.Empty)
             { }
-            else shList.Add("hosts="+ _jexusOptions.JexusOne.hosts);
+            else shList.Add("hosts=" + _jexusOptions.JexusOne.hosts);
 
             shList.Add("ports=" + _jexusOptions.JexusOne.ports);
             shList.Add(@"root=/ " + _jexusOptions.JexusOne.root);
@@ -25,16 +45,16 @@ namespace XFPanelJexus.Web.Models.Service
         public void JexusWebSH()
         {
             shList.Add("AppHost={");
-            shList.Add(@"CmdLine=dotnet "+_jexusOptions.JexusWeb.CmdLine+";");
-            shList.Add(@"AppRoot="+_jexusOptions.JexusOne.root + ";");
-            shList.Add(@"port="+_jexusOptions.JexusWeb.Port + ";");
+            shList.Add(@"CmdLine=dotnet " + _jexusOptions.JexusWeb.CmdLine + ";");
+            shList.Add(@"AppRoot=" + _jexusOptions.JexusOne.root + ";");
+            shList.Add(@"port=" + _jexusOptions.JexusWeb.Port + ";");
             shList.Add("}");
         }
-        public void JexsModelSH()
+        public void JexusModelSH()
         {
             if (_jexusOptions.JexusModel.reproxy == null || _jexusOptions.JexusModel.reproxy == string.Empty)
             { }
-            else shList.Add("reproxy="+ _jexusOptions.JexusModel.reproxy);
+            else shList.Add("reproxy=" + _jexusOptions.JexusModel.reproxy);
 
             if (_jexusOptions.JexusModel.rewrite == null || _jexusOptions.JexusModel.rewrite == string.Empty)
             { }

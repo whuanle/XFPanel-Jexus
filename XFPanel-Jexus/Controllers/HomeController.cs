@@ -10,6 +10,7 @@ using XFPanelJexus.Web.Models.Service;
 using XFPanelJexus.Web.Models.SqlService;
 using System.IO;
 using Microsoft.AspNetCore.StaticFiles;
+using XFPanelJexus.Web.Models.JexusModel;
 
 namespace XFPanel_Jexus.Controllers
 {
@@ -24,45 +25,67 @@ namespace XFPanel_Jexus.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 创建 Jexus 配置文件
+        /// 表单检查
+        /// </summary>
+        /// <param name="jexusOptions">Jexus配置</param>
+        /// <returns>视图</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateJexus(JexusOptions jexusOptions)
+        public async Task<IActionResult> CreateJexus(JexusOptions jexusOptions)
         {
+            //表单检查
             if (!ModelState.IsValid)
             {
                 return View(jexusOptions);
             }
+            
+            //构建配置文件内容
             JexusSH jexusSH = new JexusSH(jexusOptions);
-            jexusSH.JexusOneSH();
-            jexusSH.JexusWebSH();
-            jexusSH.JexsModelSH();
-            CreateDir createDir = new CreateDir();
+            await jexusSH.JexusBuild();
 
+            //构建配置文件及生成数据库数据
+            CreateDirOrFile createDirOrFile = new CreateDirOrFile();
             JexusSql jexusSql = new JexusSql();
             jexusSql.Email = jexusOptions.email;
             jexusSql.Sitename = jexusOptions.Sitename;
             jexusSql.SHType = "Jexus";
-            var jq = createDir.CreateJexusSh(jexusSH.Re(), _sqlContext, jexusSql);
+
+            var jq =await createDirOrFile.CreateJexusSh(jexusSH.Re(), _sqlContext, jexusSql);
             ViewBag.host = HttpContext.Request.Host;
 
-            return RedirectToAction(nameof(JexusSH), jq);
+            return RedirectToAction(nameof(JexusSH),jq);
+           
         }
+        [HttpPost]
+        public IActionResult JexusSH(JexusSql jexusSql)
+        {
+            
+            if (jexusSql == null)
+            {
+                ViewBag.host = HttpContext.Request.Host;
+                return View();
+            }
+                
+
+            return View(jexusSql);
+        }
+        /// <summary>
+        /// 创建Jexus配置文件视图
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult CreateJexus()
         {
             return View();
         }
-        public IActionResult JexusSH(JexusSql jexusSql)
-        {
-            if (jexusSql == null)
-                return View();
 
-            return View(jexusSql);
-        }
         /// <summary>
-        /// 返回文件
+        /// 返回文件流
         /// </summary>
-        /// <param name="DownM"></param>
+        /// <param name="DownM">文件码</param>
         /// <returns></returns>
         [HttpGet]
         public FileResult DownSH(string DownM)
@@ -76,9 +99,15 @@ namespace XFPanel_Jexus.Controllers
         }
         public IActionResult DownSH()
         {
-            return View("./Index.cshtml");
+            return NotFound();
         }
 
+        /// <summary>
+        /// 查找配置文件记录
+        /// </summary>
+        /// <param name="str">查找字符索引</param>
+        /// <param name="type">类型，文件码或邮箱</param>
+        /// <returns>视图</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Select(string str, string type)
@@ -102,9 +131,9 @@ namespace XFPanel_Jexus.Controllers
             return View();
         }
         /// <summary>
-        /// 查找记录
+        /// 通过文件码查找记录
         /// </summary>
-        /// <returns></returns>
+        /// <returns>地址</returns>
         public IEnumerable<JexusSql> SelectDownM(string DownM)
         {
             if (DownM == null || DownM == string.Empty)
@@ -116,7 +145,11 @@ namespace XFPanel_Jexus.Controllers
             return selectlist;
 
         }
-
+        /// <summary>
+        /// 通过邮件地址查找记录
+        /// </summary>
+        /// <param name="email">邮件地址</param>
+        /// <returns></returns>
         public IEnumerable<JexusSql> SelectEmail(string email)
         {
             if (email == null || email == string.Empty)

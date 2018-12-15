@@ -1,4 +1,4 @@
-﻿@model XFPanelJexus.Web.Models.JexusOptions
+﻿@model XFPanelJexus.Web.Models.JexusModel.JexusOptions
 @{
     ViewData["Title"] = "首页";
 }
@@ -86,9 +86,9 @@
 
                     <div class="input-group mb-2">
                         <span class="mr-2">后台运行dll</span>
-                        <input asp-for="@Model.JexusOne.root" type="text" class="form-control" placeholder="必须以/开头，格式/var/www/XfFile/Xffiles.Web.dll" />
+                        <input asp-for="@Model.JexusWeb.CmdLine" type="text" class="form-control" placeholder="必须以/开头，格式/var/www/XfFile/Xffiles.Web.dll" />
                     </div>
-                    <small><span asp-validation-for="@Model.JexusOne.root" class="text-danger ml-5"></span></small>
+                    <small><span asp-validation-for="@Model.JexusWeb.CmdLine" class="text-danger ml-5"></span></small>
 
                     <ul>
                         <li>

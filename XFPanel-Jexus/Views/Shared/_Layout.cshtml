@@ -28,10 +28,10 @@
         <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" asp-controller="Home" asp-action="CreateJexus" style="text-decoration: none;">
             Jexus 配置
         </a>
-        <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" asp-controller="Home" asp-action="CreateNginx" style="text-decoration: none">
+        <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" href="javascript:void()" data-toggle="modal" data-target="#myModal" style="text-decoration: none">
             Nginx 配置
         </a>
-        <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" asp-controller="Home" asp-action="CreateNJ" style="text-decoration: none">
+        <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" href="javascript:void()"  data-toggle="modal" data-target="#myModal" style="text-decoration: none">
             Nginx + Jexus 混合配置
         </a>
         <a class="nav-item btn btn-default  btn-outline-primary pt-4 pb-4" asp-controller="Home" asp-action="Select" style="text-decoration: none">
@@ -48,7 +48,30 @@
             <p>&copy; 2018 - XFPanel_Jexus 小范</p>
         </footer>
     </div>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">没有实现此功能</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    发现功能不实用，写到一半直接删除了~~~~
+                    <img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=e12e7e5dbede9c82a665fe8954bae737/63d0f703918fa0ec7b8cfe692b9759ee3d6ddb0f.jpg" />
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭 提示</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/bootstrap4/js/bootstrap.js"></script>

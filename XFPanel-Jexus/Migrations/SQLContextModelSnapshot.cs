@@ -23,17 +23,22 @@ namespace XFPanelJexus.Web.Migrations
 
                     b.Property<DateTime>("DateTime");
 
-                    b.Property<string>("DownM");
+                    b.Property<string>("DownM")
+                        .IsRequired();
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
-                    b.Property<string>("FilePath");
+                    b.Property<string>("FilePath")
+                        .IsRequired();
 
-                    b.Property<int>("NameID");
+                    b.Property<Guid>("GuidID");
 
-                    b.Property<string>("SHType");
+                    b.Property<string>("SHType")
+                        .IsRequired();
 
-                    b.Property<string>("Sitename");
+                    b.Property<string>("Sitename")
+                        .IsRequired();
 
                     b.HasKey("ID");
 

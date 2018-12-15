@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace XFPanelJexus.Web.Models
+namespace XFPanelJexus.Web.Models.JexusModel
 {
     public class JexusModel
     {

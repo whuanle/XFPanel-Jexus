@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace XFPanelJexus.Web.Models
+namespace XFPanelJexus.Web.Models.JexusModel
 {
     /// <summary>
     /// 配置kestrel服务器

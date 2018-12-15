@@ -13,13 +13,13 @@ namespace XFPanelJexus.Web.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    NameID = table.Column<int>(nullable: false),
-                    DownM = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
+                    GuidID = table.Column<Guid>(nullable: false),
+                    DownM = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
                     DateTime = table.Column<DateTime>(nullable: false),
-                    SHType = table.Column<string>(nullable: true),
-                    FilePath = table.Column<string>(nullable: true),
-                    Sitename = table.Column<string>(nullable: true)
+                    SHType = table.Column<string>(nullable: false),
+                    FilePath = table.Column<string>(nullable: false),
+                    Sitename = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
